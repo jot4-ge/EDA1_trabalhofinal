@@ -1,12 +1,8 @@
 // main.c
-
 #include "dados.h"
-
-void limpar_buffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 
 void liberar_memoria(Cliente *c, Produto *p, ItemCarrinho *k) {
     printf("\n[Sistema] Liberando memória e encerrando...\n");
@@ -23,17 +19,10 @@ int main() {
     Produto *lista_produtos = NULL;
     ItemCarrinho *carrinho = NULL;
 
-    int opcao;
+    int opcao = 0;
 
     do {
-        printf("\n=== MENU PRINCIPAL ===\n");
-        printf("1. Gestão de Clientes\n");
-        printf("2. Gestão de Produtos\n");
-        printf("3. Modo Venda (Carrinho)\n");
-        printf("0. Sair\n");
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
-        limpar_buffer();
+        opcao = menu_principal();
 
         switch (opcao) {
             case 1:

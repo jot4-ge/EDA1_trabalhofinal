@@ -53,4 +53,25 @@ void remover_do_carrinho(ItemCarrinho **carrinho, int codigo_produto);
 void finalizar_pedido(ItemCarrinho **carrinho, Produto *lista_produtos); // Atualiza estoque
 float calcular_total(ItemCarrinho *carrinho);
 
+// Funções de menu principal
+int menu_principal(){
+    int opcao;
+    printf("\n=== MENU PRINCIPAL ===\n");
+    printf("1. Gestão de Clientes\n");
+    printf("2. Gestão de Produtos\n");
+    printf("3. Modo Venda (Carrinho)\n");
+    printf("0. Sair\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+    limpar_buffer();
+
+    return opcao;    
+}
+
+//Limpa Buffer
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 #endif // DADOS_H
