@@ -53,3 +53,16 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# VSCode (Configurações locais de editor não devem ser compartilhadas)
+.vscode/
+
+# Outras IDEs (caso exista o uso de CLion, Eclipse, etc)
+.idea/
+*.layout
+*.cproject
+
+# Arquivos de Sistema Operacional (Lixo do Windows e Mac)
+Thumbs.db
+Desktop.ini
+.DS_Store
