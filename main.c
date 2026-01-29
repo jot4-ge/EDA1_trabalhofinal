@@ -4,6 +4,21 @@
 #include <stdlib.h>
 #include <locale.h>
 
+int menu_principal() {
+    int opcao;
+    printf("\n--- Menu Principal ---\n");
+    printf("1. Gestão de Clientes\n");
+    printf("2. Gestão de Produtos\n");
+    printf("3. Modo Compra\n");
+    printf("0. Sair\n");
+    printf("Escolha uma opção: ");
+
+    scanf("%d", &opcao);
+    limpar_buffer(); // Limpa o enter após o número
+
+    return opcao;
+}
+
 void liberar_memoria(Cliente *c, Produto *p, ItemCarrinho *k) {
     printf("\n[Sistema] Liberando memória e encerrando...\n");
     // TODO: Implementar free() recursivo ou iterativo aqui
@@ -26,7 +41,33 @@ int main() {
 
         switch (opcao) {
             case 1:
-                // Chamar função de gestão de clientes
+                printf("\n Menu Clientes ---\n");
+                printf("1. Adicionar Novo \n");
+                printf("2. Listar Todos \n");
+                printf("3. Remover Cliente \n");
+                printf("Escolha uma opção: ");
+
+                int sub_op;
+                scanf("%d", &sub_op);
+                limpar_buffer();
+
+                if (sub_op == 1) {
+                    adicionarCliente(&lista_clientes);
+                } else if (sub_op == 2) {
+                    listarClientes(lista_clientes);
+                } else if (sub_op == 3) {
+                    char cpf_remover[15];
+                    printf("Digite o CPF para remover: ");
+                    fgets(cpf_remover, 15, stdin);
+                    
+                    // Pequeno truque para remover o \n que o fgets pega
+                    size_t len = strlen(cpf_remover);
+                    if (len > 0 && cpf_remover[len-1] == '\n') cpf_remover[len-1] = '\0';
+
+                    removerCliente(&lista_clientes, cpf_remover);
+                } else {
+                    printf("Opcao invalida.\n");
+                }
                 break;
             case 2:
                 // Chamar função de gestão de produtos

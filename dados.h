@@ -1,20 +1,25 @@
-// dados.h //
+/* dados.h */
 #ifndef DADOS_H
 #define DADOS_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
 // Estrutura para Data
-typedef strutct {
+typedef struct {
     int dia, mes, ano;
 } Data;
 
 // LISTA DE CLIENTES
 typedef struct Cliente {
-    char cpf[15]
+    char cpf[15]; 
     char nome[100];
     char email[80];
     char telefone[20];
     Data nascimento;
-    struct Cliente *prox; // Ponteiro para o próximo nó
+    struct Cliente *prox; 
 } Cliente;
 
 // LISTA DE PRODUTOS
@@ -23,26 +28,29 @@ typedef struct Produto {
     char nome[100]; 
     float preco; 
     int quantidade_estoque;
-    struct Produto *prox; // Ponteiro para o próximo nó
+    struct Produto *prox; 
 } Produto;
 
 // LISTA DO CARRINHO (Modo Compra)
 typedef struct ItemCarrinho {
     int codigo_produto;
-    char nome_produto[100]; //Persistência de dados
-    float preco_unitario; //Persistência de preço
+    char nome_produto[100]; 
+    float preco_unitario; 
     int quantidade_compra;
-    struct ItemCarrinho *prox; // Ponteiro para o próximo nó
+    struct ItemCarrinho *prox; 
 } ItemCarrinho;
 
-// Gestão de Clientes
-void adicionarCliente(Cliente **lista, Cliente novo_cliente);
+
+// Utils (implementado em utils.c)
+void limpar_buffer();
+
+// A função deve pedir os dados internamente para não poluir a main.
+void adicionarCliente(Cliente **lista); 
 void removerCliente(Cliente **lista, char *cpf);
 void listarClientes(Cliente *lista);
 Cliente* buscarCliente(Cliente *lista, char *cpf);
 
-// Gestão de Produtos
-void adicionarProduto(Produto **lista, Produto novo_produto);
+void adicionarProduto(Produto **lista);
 void removerProduto(Produto **lista, int codigo);
 void listarProdutos(Produto *lista);
 Produto* buscarProduto(Produto *lista, int codigo);
@@ -50,28 +58,10 @@ Produto* buscarProduto(Produto *lista, int codigo);
 // Carrinho
 void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *produto, int qtd);
 void remover_do_carrinho(ItemCarrinho **carrinho, int codigo_produto);
-void finalizar_pedido(ItemCarrinho **carrinho, Produto *lista_produtos); // Atualiza estoque
+void finalizar_pedido(ItemCarrinho **carrinho, Produto *lista_produtos); 
 float calcular_total(ItemCarrinho *carrinho);
 
-// Funções de menu principal
-int menu_principal(){
-    int opcao;
-    printf("\n=== MENU PRINCIPAL ===\n");
-    printf("1. Gestão de Clientes\n");
-    printf("2. Gestão de Produtos\n");
-    printf("3. Modo Venda (Carrinho)\n");
-    printf("0. Sair\n");
-    printf("Escolha uma opção: ");
-    scanf("%d", &opcao);
-    limpar_buffer();
-
-    return opcao;    
-}
-
-//Limpa Buffer
-void limpar_buffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
+// Menu
+int menu_principal();
 
 #endif // DADOS_H
