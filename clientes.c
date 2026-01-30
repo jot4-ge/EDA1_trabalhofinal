@@ -101,3 +101,16 @@ void removerCliente(Cliente **lista, char *cpf) {
     printf("\n>>> Sucesso! Cliente removido do sistema. <<<\n");
 }
 
+Cliente* buscarCliente(Cliente *lista, char *cpf) {
+    Cliente *atual = lista;
+
+    while (atual != NULL) {
+        if (strcmp(atual->cpf, cpf) == 0) {
+            return atual; 
+        }
+        atual = atual->prox;
+    }
+
+    return NULL; 
+}
+

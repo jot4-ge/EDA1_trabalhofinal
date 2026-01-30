@@ -45,6 +45,7 @@ int main() {
                 printf("1. Adicionar Novo \n");
                 printf("2. Listar Todos \n");
                 printf("3. Remover Cliente \n");
+                printf("4. Buscar Cliente \n");
                 printf("Escolha uma opção: ");
 
                 int sub_op;
@@ -65,6 +66,24 @@ int main() {
                     if (len > 0 && cpf_remover[len-1] == '\n') cpf_remover[len-1] = '\0';
 
                     removerCliente(&lista_clientes, cpf_remover);
+                } else if (sub_op == 4) {
+                    char cpf_buscar[15];
+                    printf("Digite o CPF para buscar: ");
+                    fgets(cpf_buscar, 15, stdin);
+
+                    size_t len = strlen(cpf_buscar);
+                    if (len > 0 && cpf_buscar[len-1] == '\n') cpf_buscar[len-1] = '\0';
+
+                    Cliente *resultado = buscarCliente(lista_clientes, cpf_buscar);
+
+                    if (resultado != NULL) {
+                        printf("\n--- Cliente Encontrado ---\n");
+                        printf("Nome: %s\n", resultado->nome);
+                        printf("Email: %s\n", resultado->email);
+                        printf("Telefone: %s\n", resultado->telefone);
+                    } else {
+                        printf("\n[Aviso] Cliente nao encontrado.\n");
+                    }
                 } else {
                     printf("Opcao invalida.\n");
                 }
