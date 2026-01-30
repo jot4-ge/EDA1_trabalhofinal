@@ -127,6 +127,7 @@ int main() {
                         break;
                     case 2:
                         // listar produtos
+                        listarProdutos(lista_produtos);
                         break;
                     case 3:
                         // listar produtos
