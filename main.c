@@ -90,6 +90,57 @@ int main() {
                 break;
             case 2:
                 // Chamar função de gestão de produtos
+                printf("\n Menu Produtos ---\n");
+                printf("1. Cadastrar Produto\n");
+                printf("2. Listar todos os produtos\n");
+                printf("3. Buscar produto pelo código\n");
+                printf("4. Editar dados de um produto\n");
+                printf("5. Remover um produto\n");
+                
+                int opcao;
+                scanf("%d", &opcao);
+                limpar_buffer();
+
+                switch(opcao){
+                    case 1:
+                        int codigo_temp, quantidade_estoque_temp;
+                        float preco_temp;
+                        char nome_temp[100];
+
+                        printf("Digite o nome do Produto:\n");
+                        scanf("%99[^\n]", nome_temp);
+                        limpar_buffer();
+
+                        printf("Digite o código do Produto:\n");
+                        scanf("%d", &codigo_temp);
+                        limpar_buffer();
+
+                        printf("Digite o preço do Produto:\n");
+                        scanf("%f", &preco_temp);
+
+                        printf("Digite a quantidade do produto:\n");
+                        scanf("%d", &quantidade_estoque_temp);
+
+                        lista_produtos = adicionarProduto(lista_produtos, codigo_temp, nome_temp, preco_temp, quantidade_estoque_temp);
+                        
+                        printf("Produto Adicionado com Sucesso!\n");
+                        break;
+                    case 2:
+                        // listar produtos
+                        break;
+                    case 3:
+                        // listar produtos
+                        break;
+                    case 4:
+                        // listar produtos
+                        break;
+                    case 5:
+                        // listar produtos
+                        break;
+                    default:
+                        printf("Opção inválida! Tente novamente.\n");
+                }
+
                 break;
             case 3:
                 // Chamar função do modo compra
