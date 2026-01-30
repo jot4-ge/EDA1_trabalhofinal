@@ -1,4 +1,5 @@
 #include "dados.h"
+#include "utils.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,4 +42,12 @@ void listarProdutos(Produto *lista){
         le = le -> prox;
     }
     printf("--------------------------------\n");
+}
+
+Produto *buscarProduto(Produto *lista, int codigo){
+    Produto *p = lista;
+
+    while(p != NULL && p -> codigo != codigo) p = p -> prox;
+
+    return p;
 }
