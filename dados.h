@@ -50,7 +50,7 @@ void removerCliente(Cliente **lista, char *cpf);
 void listarClientes(Cliente *lista);
 Cliente* buscarCliente(Cliente *lista, char *cpf);
 
-void adicionarProduto(Produto **lista);
+Produto *adicionarProduto(Produto *lista, int codigo, char *nome, float preco, int quantidade_estoque);
 void removerProduto(Produto **lista, int codigo);
 void listarProdutos(Produto *lista);
 Produto* buscarProduto(Produto *lista, int codigo);
