@@ -126,17 +126,17 @@ int main() {
                         printf("Produto Adicionado com Sucesso!\n");
                         break;
                     case 2:
-                        // listar produtos
+                        
                         listarProdutos(lista_produtos);
                         break;
                     case 3:
-                        // listar produtos
+                        // Busca de produto
                         break;
                     case 4:
-                        // listar produtos
+                        // Editar Produto
                         break;
                     case 5:
-                        // listar produtos
+                        // Remover Produto
                         break;
                     default:
                         printf("Opção inválida! Tente novamente.\n");
