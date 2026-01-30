@@ -130,7 +130,17 @@ int main() {
                         listarProdutos(lista_produtos);
                         break;
                     case 3:
-                        // Busca de produto
+
+                        printf("Digite o código do produto que deseja buscar:\n");
+                        scanf("%d", &codigo_temp);
+
+                        Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
+
+                        if (resultado){
+                            printf("[Sucesso] Produto encontrado!\n");
+                            imprimeProduto(resultado);
+                        }
+                        else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
                         break;
                     case 4:
                         // Editar Produto

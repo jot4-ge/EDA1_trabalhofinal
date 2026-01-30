@@ -1,5 +1,4 @@
 #include "dados.h"
-#include "utils.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -50,4 +49,20 @@ Produto *buscarProduto(Produto *lista, int codigo){
     while(p != NULL && p -> codigo != codigo) p = p -> prox;
 
     return p;
+}
+
+void imprimeProduto(Produto *lista){
+    Produto *p = lista;
+    if (p != NULL){
+        printf("--------------------------------\n");
+        printf("Nome do produto: %s\n", p -> nome);
+        printf("Código do produto: %d\n", p -> codigo);
+        printf("Preço do produto: R$ %.2f\n", p -> preco);
+        printf("Quantidade no estoque do produto: %d\n", p -> quantidade_estoque);
+        printf("--------------------------------\n");
+        p = p -> prox;
+    } else {
+        printf("Erro: Ponteiro Inválido");
+        return;
+    }
 }

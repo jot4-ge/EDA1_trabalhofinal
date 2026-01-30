@@ -43,6 +43,7 @@ typedef struct ItemCarrinho {
 
 // Utils (implementado em utils.c)
 void limpar_buffer();
+Produto *criaLeCabecaProduto();
 
 // A função deve pedir os dados internamente para não poluir a main.
 void adicionarCliente(Cliente **lista); 
@@ -54,6 +55,7 @@ Produto *adicionarProduto(Produto *lista, int codigo, char *nome, float preco, i
 void removerProduto(Produto *lista, int codigo);
 void listarProdutos(Produto *lista);
 Produto* buscarProduto(Produto *lista, int codigo);
+void imprimeProduto(Produto *lista);
 
 // Carrinho
 void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *produto, int qtd);
