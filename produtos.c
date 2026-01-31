@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Produto *adicionarProduto(Produto *head, int codigo, char *nome, float preco, int quantidade_estoque){
+void adicionarProduto(Produto *head, int codigo, char *nome, float preco, int quantidade_estoque){
     Produto * novo = (Produto*) malloc(sizeof(Produto));
 
     if (novo == NULL){
@@ -19,7 +19,6 @@ Produto *adicionarProduto(Produto *head, int codigo, char *nome, float preco, in
     novo -> prox = head -> prox;
     head -> prox = novo;
 
-    return novo;
 }
 
 void listarProdutos(Produto *head){
@@ -59,7 +58,6 @@ void imprimeProduto(Produto *p){
         printf("Preço do produto: R$ %.2f\n", p -> preco);
         printf("Quantidade no estoque do produto: %d\n", p -> quantidade_estoque);
         printf("--------------------------------\n");
-        p = p -> prox;
 }
 
 void removerProduto(Produto *head, int codigo){

@@ -100,12 +100,11 @@ int main() {
                 int opcao;
                 scanf("%d", &opcao);
                 limpar_buffer();
-
+                int codigo_temp, quantidade_estoque_temp;
+                float preco_temp;
+                char nome_temp[100];
                 switch(opcao){
                     case 1:
-                        int codigo_temp, quantidade_estoque_temp;
-                        float preco_temp;
-                        char nome_temp[100];
 
                         printf("Digite o nome do Produto:\n");
                         scanf("%99[^\n]", nome_temp);
@@ -121,7 +120,7 @@ int main() {
                         printf("Digite a quantidade do produto:\n");
                         scanf("%d", &quantidade_estoque_temp);
 
-                        lista_produtos = adicionarProduto(lista_produtos, codigo_temp, nome_temp, preco_temp, quantidade_estoque_temp);
+                        adicionarProduto(lista_produtos, codigo_temp, nome_temp, preco_temp, quantidade_estoque_temp);
                         
                         printf("Produto Adicionado com Sucesso!\n");
                         break;
@@ -130,17 +129,16 @@ int main() {
                         listarProdutos(lista_produtos);
                         break;
                     case 3:
+                            printf("Digite o código do produto que deseja buscar:\n");
+                            scanf("%d", &codigo_temp);
 
-                        printf("Digite o código do produto que deseja buscar:\n");
-                        scanf("%d", &codigo_temp);
+                            Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
 
-                        Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
-
-                        if (resultado){
-                            printf("[Sucesso] Produto encontrado!\n");
-                            imprimeProduto(resultado);
-                        }
-                        else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
+                            if (resultado){
+                                printf("[Sucesso] Produto encontrado!\n");
+                                imprimeProduto(resultado);
+                            }
+                            else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
                         break;
                     case 4:
                         // Editar Produto
