@@ -31,7 +31,7 @@ int main() {
 
     // INICIALIZAÇÃO DE PONTEIROS
     Cliente *lista_clientes = NULL;
-    Produto *lista_produtos = NULL;
+    Produto *lista_produtos = criaLeCabecaProduto();
     ItemCarrinho *carrinho = NULL;
 
     int opcao = 0;
@@ -146,7 +146,10 @@ int main() {
                         // Editar Produto
                         break;
                     case 5:
-                        // Remover Produto
+                        
+                        printf("Digite o código do produto que deseja remover:\n");
+                        scanf("%d", &codigo_temp);
+                        removerProduto(lista_produtos, codigo_temp);
                         break;
                     default:
                         printf("Opção inválida! Tente novamente.\n");

@@ -8,9 +8,9 @@ void limpar_buffer() {
 }
 
 Produto *criaLeCabecaProduto(){
-    Produto *le;
-    le = malloc(sizeof(Produto));
-    le -> prox = NULL;
+    Produto *head;
+    head = (Produto*) malloc(sizeof(Produto));
+    head -> prox = NULL;
 
-    return le;
+    return head;
 }

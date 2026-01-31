@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Produto *adicionarProduto(Produto *lista, int codigo, char *nome, float preco, int quantidade_estoque){
+Produto *adicionarProduto(Produto *head, int codigo, char *nome, float preco, int quantidade_estoque){
     Produto * novo = (Produto*) malloc(sizeof(Produto));
 
     if (novo == NULL){
@@ -16,13 +16,14 @@ Produto *adicionarProduto(Produto *lista, int codigo, char *nome, float preco, i
     novo -> quantidade_estoque = quantidade_estoque;
     strcpy(novo -> nome, nome);
 
-    novo -> prox = lista;
+    novo -> prox = head -> prox;
+    head -> prox = novo;
 
     return novo;
 }
 
-void listarProdutos(Produto *lista){
-    Produto *le = lista;
+void listarProdutos(Produto *head){
+    Produto *le = head -> prox;
 
     if (le == NULL) {
         printf("\n>> A lista está vazia no momento.\n");
@@ -43,17 +44,15 @@ void listarProdutos(Produto *lista){
     printf("--------------------------------\n");
 }
 
-Produto *buscarProduto(Produto *lista, int codigo){
-    Produto *p = lista;
+Produto *buscarProduto(Produto *head, int codigo){
+    Produto *p = head -> prox;
 
     while(p != NULL && p -> codigo != codigo) p = p -> prox;
 
     return p;
 }
 
-void imprimeProduto(Produto *lista){
-    Produto *p = lista;
-    if (p != NULL){
+void imprimeProduto(Produto *p){
         printf("--------------------------------\n");
         printf("Nome do produto: %s\n", p -> nome);
         printf("Código do produto: %d\n", p -> codigo);
@@ -61,8 +60,29 @@ void imprimeProduto(Produto *lista){
         printf("Quantidade no estoque do produto: %d\n", p -> quantidade_estoque);
         printf("--------------------------------\n");
         p = p -> prox;
-    } else {
-        printf("Erro: Ponteiro Inválido");
+}
+
+void removerProduto(Produto *head, int codigo){
+    if (head -> prox == NULL){
+        printf("Lista vazia");
         return;
     }
+
+    Produto *p = head;
+    Produto *q = head -> prox;
+    
+    while(q != NULL && q -> codigo != codigo){
+        p = q;
+        q = q -> prox;
+    }
+
+    if (q != NULL){
+        p -> prox = q -> prox;
+        free(q);
+        printf("[Sucesso] Produto Removido!\n");
+    }
+    else{
+        printf("[Erro] Produto não encontrado.\n");
+    }
+
 }
