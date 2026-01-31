@@ -1,4 +1,3 @@
-// main.c
 #include "dados.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -155,7 +154,42 @@ int main() {
 
                 break;
             case 3:
-                // Chamar função do modo compra
+                printf("\n--- CAIXA LIVRE ---\n");
+                printf("1. Adicionar Produto ao Carrinho\n");
+                printf("2. Ver Carrinho\n");
+                printf("3. Remover Item do Carrinho\n");
+                printf("4. FINALIZAR PEDIDO (Pagar)\n");
+                printf("0. Voltar\n");
+                
+                int op_c;
+                scanf("%d", &op_c);
+                limpar_buffer();
+
+                if (op_c == 1) {
+
+                    listarProdutos(lista_produtos); 
+
+                    int cod, qtd;
+                    printf("Codigo do produto: "); scanf("%d", &cod);
+                    printf("Quantidade: "); scanf("%d", &qtd);
+                    limpar_buffer();
+                    
+                    adicionar_ao_carrinho(&carrinho, lista_produtos, cod, qtd);
+
+                } else if (op_c == 2) {
+                    listar_carrinho(carrinho);
+
+                } else if (op_c == 3) {
+                    int cod_rem;
+                    printf("Digite o codigo do item para remover: ");
+                    scanf("%d", &cod_rem);
+                    limpar_buffer();
+                    
+                    remover_do_carrinho(&carrinho, cod_rem);
+
+                } else if (op_c == 4) {
+                    finalizar_pedido(&carrinho, lista_produtos);
+                }
                 break;
             case 0:
                 liberar_memoria(lista_clientes, lista_produtos, carrinho);

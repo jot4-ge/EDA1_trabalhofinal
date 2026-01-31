@@ -58,10 +58,10 @@ Produto* buscarProduto(Produto *lista, int codigo);
 void imprimeProduto(Produto *lista);
 
 // Carrinho
-void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *produto, int qtd);
-void remover_do_carrinho(ItemCarrinho **carrinho, int codigo_produto);
-void finalizar_pedido(ItemCarrinho **carrinho, Produto *lista_produtos); 
-float calcular_total(ItemCarrinho *carrinho);
+void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *head_produtos, int codigo, int qtd);
+void remover_do_carrinho(ItemCarrinho **carrinho, int codigo);
+void listar_carrinho(ItemCarrinho *carrinho);
+void finalizar_pedido(ItemCarrinho **carrinho, Produto *head_produtos);
 
 // Menu
 int menu_principal();
