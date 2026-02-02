@@ -40,11 +40,12 @@ int main() {
 
         switch (opcao) {
             case 1:
-                printf("\n Menu Clientes ---\n");
+                printf("\n--- Menu Clientes ---\n");
                 printf("1. Adicionar Novo \n");
                 printf("2. Listar Todos \n");
                 printf("3. Remover Cliente \n");
                 printf("4. Buscar Cliente \n");
+                printf("5. Editar Cliente \n"); // <--- Adicionei esta opção
                 printf("Escolha uma opção: ");
 
                 int sub_op;
@@ -53,25 +54,23 @@ int main() {
 
                 if (sub_op == 1) {
                     adicionarCliente(&lista_clientes);
+
                 } else if (sub_op == 2) {
                     listarClientes(lista_clientes);
+
                 } else if (sub_op == 3) {
                     char cpf_remover[15];
                     printf("Digite o CPF para remover: ");
-                    fgets(cpf_remover, 15, stdin);
+                    scanf("%14s", cpf_remover); // Simplifiquei para scanf (mais seguro aqui)
+                    limpar_buffer();
                     
-                    // Pequeno truque para remover o \n que o fgets pega
-                    size_t len = strlen(cpf_remover);
-                    if (len > 0 && cpf_remover[len-1] == '\n') cpf_remover[len-1] = '\0';
-
                     removerCliente(&lista_clientes, cpf_remover);
+
                 } else if (sub_op == 4) {
                     char cpf_buscar[15];
                     printf("Digite o CPF para buscar: ");
-                    fgets(cpf_buscar, 15, stdin);
-
-                    size_t len = strlen(cpf_buscar);
-                    if (len > 0 && cpf_buscar[len-1] == '\n') cpf_buscar[len-1] = '\0';
+                    scanf("%14s", cpf_buscar);
+                    limpar_buffer();
 
                     Cliente *resultado = buscarCliente(lista_clientes, cpf_buscar);
 
@@ -83,6 +82,15 @@ int main() {
                     } else {
                         printf("\n[Aviso] Cliente nao encontrado.\n");
                     }
+
+                } else if (sub_op == 5) { 
+            
+                    char cpf_edit[15];
+                    printf("Digite o CPF do cliente para editar: ");
+                    scanf("%14s", cpf_edit);
+                    limpar_buffer();
+
+                    editarCliente(lista_clientes, cpf_edit);
                 } else {
                     printf("Opcao invalida.\n");
                 }
@@ -154,14 +162,33 @@ int main() {
 
                 break;
             case 3:
-                printf("\n--- CAIXA LIVRE ---\n");
+            {
+                char cpf_cliente[15];
+                printf("\n=== IDENTIFICACAO NECESSARIA ===\n");
+                printf("Digite o CPF do cliente para iniciar as compras: ");
+                scanf("%14[^\n]", cpf_cliente);
+                limpar_buffer();
+
+                Cliente *cliente_logado = buscarCliente(lista_clientes, cpf_cliente);
+                
+                if (cliente_logado == NULL) {
+                    printf("\n[Erro] Cliente nao encontrado!\n");
+                    printf("Por favor, cadastre o cliente no Menu 1 antes de comprar.\n");
+                    break;
+            }
+                printf("\nBem-vindo(a), %s! Vamos começar suas compras.\n", cliente_logado->nome);
+                
+                int op_c = -1;
+                while (op_c != 0) {
+                
+                printf("\n--- CAIXA: %s ---\n", cliente_logado->nome);
                 printf("1. Adicionar Produto ao Carrinho\n");
                 printf("2. Ver Carrinho\n");
                 printf("3. Remover Item do Carrinho\n");
                 printf("4. FINALIZAR PEDIDO (Pagar)\n");
                 printf("0. Voltar\n");
-                
-                int op_c;
+                printf("Opcao: ");
+
                 scanf("%d", &op_c);
                 limpar_buffer();
 
@@ -181,16 +208,15 @@ int main() {
 
                 } else if (op_c == 3) {
                     int cod_rem;
-                    printf("Digite o codigo do item para remover: ");
-                    scanf("%d", &cod_rem);
-                    limpar_buffer();
-                    
+                    printf("Codigo para remover: "); scanf("%d", &cod_rem);
                     remover_do_carrinho(&carrinho, cod_rem);
 
                 } else if (op_c == 4) {
                     finalizar_pedido(&carrinho, lista_produtos);
                 }
-                break;
+            }
+        }
+        break;
             case 0:
                 liberar_memoria(lista_clientes, lista_produtos, carrinho);
                 printf("Encerrando o programa. Até logo!\n");

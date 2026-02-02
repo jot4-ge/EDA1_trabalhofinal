@@ -49,6 +49,7 @@ Produto *criaLeCabecaProduto();
 void adicionarCliente(Cliente **lista); 
 void removerCliente(Cliente **lista, char *cpf);
 void listarClientes(Cliente *lista);
+void editarCliente(Cliente *lista, char *cpf);
 Cliente* buscarCliente(Cliente *lista, char *cpf);
 
 void adicionarProduto(Produto *lista, int codigo, char *nome, float preco, int quantidade_estoque);
