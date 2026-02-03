@@ -8,7 +8,7 @@ void adicionar_ao_carrinho(ItemCarrinho  **carrinho, Produto *head_produtos, int
     Produto *prod = buscarProduto(head_produtos, codigo);
 
     if (prod == NULL) {
-        printf("\n[Erro] Produto com código %d não encontrado.\n", codigo);
+        printf("\n[Erro] Produto com codigo %d nao encontrado.\n", codigo);
         return;
     }
 
@@ -21,7 +21,7 @@ void adicionar_ao_carrinho(ItemCarrinho  **carrinho, Produto *head_produtos, int
         if (aux->codigo_produto == codigo) {
 
             if (aux->quantidade_compra + qtd > prod->quantidade_estoque) {
-                printf("\n[Erro] LImite de estoque excedido (Voce ja tem %d no carrinho).\n", aux->quantidade_compra);
+                printf("\n[Erro] Limite de estoque excedido (Voce ja tem %d no carrinho).\n", aux->quantidade_compra);
                 return;
             }
             aux->quantidade_compra += qtd;

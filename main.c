@@ -6,11 +6,11 @@
 int menu_principal() {
     int opcao;
     printf("\n--- Menu Principal ---\n");
-    printf("1. Gestão de Clientes\n");
-    printf("2. Gestão de Produtos\n");
+    printf("1. Gestao de Clientes\n");
+    printf("2. Gestao de Produtos\n");
     printf("3. Modo Compra\n");
     printf("0. Sair\n");
-    printf("Escolha uma opção: ");
+    printf("Escolha uma opcao: ");
 
     scanf("%d", &opcao);
     limpar_buffer(); // Limpa o enter após o número
@@ -20,7 +20,6 @@ int menu_principal() {
 
 void liberar_memoria(Cliente *c, Produto *p, ItemCarrinho *k) {
     printf("\n[Sistema] Liberando memória e encerrando...\n");
-    // TODO: Implementar free() recursivo ou iterativo aqui
 
 }
 
@@ -45,7 +44,7 @@ int main() {
                 printf("2. Listar Todos \n");
                 printf("3. Remover Cliente \n");
                 printf("4. Buscar Cliente \n");
-                printf("5. Editar Cliente \n"); // <--- Adicionei esta opção
+                printf("5. Editar Cliente \n"); 
                 printf("Escolha uma opção: ");
 
                 int sub_op;
@@ -61,7 +60,7 @@ int main() {
                 } else if (sub_op == 3) {
                     char cpf_remover[15];
                     printf("Digite o CPF para remover: ");
-                    scanf("%14s", cpf_remover); // Simplifiquei para scanf (mais seguro aqui)
+                    scanf("%14s", cpf_remover);
                     limpar_buffer();
                     
                     removerCliente(&lista_clientes, cpf_remover);
@@ -100,7 +99,7 @@ int main() {
                 printf("\n Menu Produtos ---\n");
                 printf("1. Cadastrar Produto\n");
                 printf("2. Listar todos os produtos\n");
-                printf("3. Buscar produto pelo código\n");
+                printf("3. Buscar produto pelo codigo\n");
                 printf("4. Editar dados de um produto\n");
                 printf("5. Remover um produto\n");
                 
@@ -117,7 +116,7 @@ int main() {
                         scanf("%99[^\n]", nome_temp);
                         limpar_buffer();
 
-                        printf("Digite o código do Produto:\n");
+                        printf("Digite o codigo do Produto:\n");
                         scanf("%d", &codigo_temp);
                         limpar_buffer();
 
@@ -136,7 +135,7 @@ int main() {
                         listarProdutos(lista_produtos);
                         break;
                     case 3:
-                        printf("Digite o código do produto que deseja buscar:\n");
+                        printf("Digite o codigo do produto que deseja buscar:\n");
                         scanf("%d", &codigo_temp);
 
                         Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
@@ -145,22 +144,22 @@ int main() {
                             printf("[Sucesso] Produto encontrado!\n");
                             imprimeProduto(resultado);
                         }
-                        else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
+                        else printf("[Aviso] Produto nao encontrado com o codigo %d\n", codigo_temp);
                         break;
                     case 4:
-                        printf("Qual o código do Produto que deseja editar?\n");
+                        printf("Qual o codigo do Produto que deseja editar?\n");
                         scanf("%d", &codigo_temp);
                         limpar_buffer();
                         editarProduto(lista_produtos, codigo_temp);
                         break;
                     case 5:
                         
-                        printf("Digite o código do produto que deseja remover:\n");
+                        printf("Digite o codigo do produto que deseja remover:\n");
                         scanf("%d", &codigo_temp);
                         removerProduto(lista_produtos, codigo_temp);
                         break;
                     default:
-                        printf("Opção inválida! Tente novamente.\n");
+                        printf("Opcao invalida! Tente novamente.\n");
                 }
 
                 break;
@@ -221,11 +220,33 @@ int main() {
         }
         break;
             case 0:
-                liberar_memoria(lista_clientes, lista_produtos, carrinho);
-                printf("Encerrando o programa. Até logo!\n");
+                printf("\nEncerrando sistema e liberando memoria...\n");
+                
+                Cliente *atual_c = lista_clientes;
+                while (atual_c != NULL) {
+                    Cliente *temp = atual_c;
+                    atual_c = atual_c->prox;
+                    free(temp);
+                }
+                
+                Produto *atual_p = lista_produtos; 
+                while (atual_p != NULL) {
+                    Produto *temp = atual_p;
+                    atual_p = atual_p->prox;
+                    free(temp);
+                }
+
+                ItemCarrinho *atual_car = carrinho;
+                while (atual_car != NULL) {
+                    ItemCarrinho *temp = atual_car;
+                    atual_car = atual_car->prox;
+                    free(temp);
+                }
+
+                printf("Memoria liberada. Ate logo!\n");
                 break;
             default:
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opcao invalida! Tente novamente.\n");
         }
     } while (opcao != 0);
 

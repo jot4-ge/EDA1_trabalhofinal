@@ -1,4 +1,3 @@
-/* dados.h */
 #ifndef DADOS_H
 #define DADOS_H
 
@@ -41,11 +40,10 @@ typedef struct ItemCarrinho {
 } ItemCarrinho;
 
 
-// Utils (implementado em utils.c)
+// Utils 
 void limpar_buffer();
 Produto *criaLeCabecaProduto();
 
-// A função deve pedir os dados internamente para não poluir a main.
 void adicionarCliente(Cliente **lista); 
 void removerCliente(Cliente **lista, char *cpf);
 void listarClientes(Cliente *lista);
@@ -59,7 +57,6 @@ Produto* buscarProduto(Produto *lista, int codigo);
 void imprimeProduto(Produto *lista);
 void editarProduto(Produto *lista, int codigo);
 
-// Carrinho
 void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *head_produtos, int codigo, int qtd);
 void remover_do_carrinho(ItemCarrinho **carrinho, int codigo);
 void listar_carrinho(ItemCarrinho *carrinho);
@@ -68,4 +65,4 @@ void finalizar_pedido(ItemCarrinho **carrinho, Produto *head_produtos);
 // Menu
 int menu_principal();
 
-#endif // DADOS_H
+#endif

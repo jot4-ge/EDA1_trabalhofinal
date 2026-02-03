@@ -126,7 +126,7 @@ void editarCliente(Cliente *lista, char *cpf) {
     }
 
     printf("\n--- Editando: %s ---\n", atual->nome);
-    printf("1. Alterarnome\n");
+    printf("1. Alterar nome\n");
     printf("2. Alterar email\n");
     printf("3. Alterar telefone\n");
     printf("0. Cancelar\n");

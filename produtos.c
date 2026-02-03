@@ -7,7 +7,7 @@ void adicionarProduto(Produto *head, int codigo, char *nome, float preco, int qu
     Produto * novo = (Produto*) malloc(sizeof(Produto));
 
     if (novo == NULL){
-        printf("Erro fatal: Memória insuficiente!\n");
+        printf("Erro fatal: Memoria insuficiente!\n");
         exit(1);
     }
 
@@ -25,7 +25,7 @@ void listarProdutos(Produto *head){
     Produto *le = head -> prox;
 
     if (le == NULL) {
-        printf("\n>> A lista está vazia no momento.\n");
+        printf("\n>> A lista esta vazia no momento.\n");
         return;
     }
 
@@ -34,8 +34,8 @@ void listarProdutos(Produto *head){
     while(le != NULL){
         printf("--------------------------------\n");
         printf("Nome do produto: %s\n", le -> nome);
-        printf("Código do produto: %d\n", le -> codigo);
-        printf("Preço do produto: R$ %.2f\n", le -> preco);
+        printf("Codigo do produto: %d\n", le -> codigo);
+        printf("Preco do produto: R$ %.2f\n", le -> preco);
         printf("Quantidade no estoque do produto: %d\n", le -> quantidade_estoque);
 
         le = le -> prox;
@@ -54,8 +54,8 @@ Produto *buscarProduto(Produto *head, int codigo){
 void imprimeProduto(Produto *p){
         printf("--------------------------------\n");
         printf("Nome do produto: %s\n", p -> nome);
-        printf("Código do produto: %d\n", p -> codigo);
-        printf("Preço do produto: R$ %.2f\n", p -> preco);
+        printf("Codigo do produto: %d\n", p -> codigo);
+        printf("Preco do produto: R$ %.2f\n", p -> preco);
         printf("Quantidade no estoque do produto: %d\n", p -> quantidade_estoque);
         printf("--------------------------------\n");
 }
@@ -80,7 +80,7 @@ void removerProduto(Produto *head, int codigo){
         printf("[Sucesso] Produto Removido!\n");
     }
     else{
-        printf("[Erro] Produto não encontrado.\n");
+        printf("[Erro] Produto nao encontrado.\n");
     }
 
 }
@@ -95,7 +95,7 @@ void editarProduto(Produto *head, int codigo){
     
     int escolha;
     printf("O que deseja editar?\n");
-    printf("(1) Nome\n(2) Código\n(3) Preço\n(4) Quantidade\n");
+    printf("(1) Nome\n(2) Codigo\n(3) Preço\n(4) Quantidade\n");
     scanf("%d", &escolha);
     limpar_buffer();
     char nome[100]; int novo_codigo,quantidade; float preco;
@@ -109,18 +109,18 @@ void editarProduto(Produto *head, int codigo){
                 break;
             
             case 2:
-                printf("Digite o novo código:\n");
+                printf("Digite o novo codigo:\n");
                 scanf("%d", &novo_codigo);
                 limpar_buffer();
                 objeto -> codigo = codigo;
-                printf("[Sucesso] Código Alterado!\n");
+                printf("[Sucesso] Codigo Alterado!\n");
                 break;
             case 3:
-                printf("Digite o novo preço:\n");
+                printf("Digite o novo preco:\n");
                 scanf("%f", &preco);
                 limpar_buffer();
                 objeto -> preco = preco;
-                printf("[Sucesso] Preço Alterado!\n");
+                printf("[Sucesso] Preco Alterado!\n");
                 break;
             case 4:
                 printf("Digite a nova quantidade:\n");
@@ -130,7 +130,7 @@ void editarProduto(Produto *head, int codigo){
                 printf("[Sucesso] Quantidade Alterada!\n");
                 break;
             default:
-                printf("Opção Inválida, nada alterado.\n");
+                printf("Opção Invalida, nada alterado.\n");
                 break;
             }
 }
