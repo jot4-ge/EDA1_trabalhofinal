@@ -136,19 +136,22 @@ int main() {
                         listarProdutos(lista_produtos);
                         break;
                     case 3:
-                            printf("Digite o código do produto que deseja buscar:\n");
-                            scanf("%d", &codigo_temp);
+                        printf("Digite o código do produto que deseja buscar:\n");
+                        scanf("%d", &codigo_temp);
 
-                            Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
+                        Produto *resultado = buscarProduto(lista_produtos, codigo_temp);
 
-                            if (resultado){
-                                printf("[Sucesso] Produto encontrado!\n");
-                                imprimeProduto(resultado);
-                            }
-                            else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
+                        if (resultado){
+                            printf("[Sucesso] Produto encontrado!\n");
+                            imprimeProduto(resultado);
+                        }
+                        else printf("[Aviso] Produto não encontrado com o codigo %d\n", codigo_temp);
                         break;
                     case 4:
-                        // Editar Produto
+                        printf("Qual o código do Produto que deseja editar?\n");
+                        scanf("%d", &codigo_temp);
+                        limpar_buffer();
+                        editarProduto(lista_produtos, codigo_temp);
                         break;
                     case 5:
                         

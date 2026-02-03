@@ -57,6 +57,7 @@ void removerProduto(Produto *lista, int codigo);
 void listarProdutos(Produto *lista);
 Produto* buscarProduto(Produto *lista, int codigo);
 void imprimeProduto(Produto *lista);
+void editarProduto(Produto *lista, int codigo);
 
 // Carrinho
 void adicionar_ao_carrinho(ItemCarrinho **carrinho, Produto *head_produtos, int codigo, int qtd);

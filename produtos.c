@@ -84,3 +84,53 @@ void removerProduto(Produto *head, int codigo){
     }
 
 }
+
+void editarProduto(Produto *head, int codigo){
+    Produto *objeto = buscarProduto(head, codigo);
+
+    if(objeto == NULL){
+        printf("\n[Erro] Produto com codigo %d nao encontrado.\n", codigo);
+        return;
+    }
+    
+    int escolha;
+    printf("O que deseja editar?\n");
+    printf("(1) Nome\n(2) Código\n(3) Preço\n(4) Quantidade\n");
+    scanf("%d", &escolha);
+    limpar_buffer();
+    char nome[100]; int novo_codigo,quantidade; float preco;
+        switch (escolha){
+            case 1:
+                printf("Digite o novo nome:\n");
+                scanf("%99[^\n]", nome);
+                limpar_buffer();
+                strcpy(objeto -> nome, nome);
+                printf("[Sucesso] Nome Alterado!");
+                break;
+            
+            case 2:
+                printf("Digite o novo código:\n");
+                scanf("%d", &novo_codigo);
+                limpar_buffer();
+                objeto -> codigo = codigo;
+                printf("[Sucesso] Código Alterado!\n");
+                break;
+            case 3:
+                printf("Digite o novo preço:\n");
+                scanf("%f", &preco);
+                limpar_buffer();
+                objeto -> preco = preco;
+                printf("[Sucesso] Preço Alterado!\n");
+                break;
+            case 4:
+                printf("Digite a nova quantidade:\n");
+                scanf("%d", &quantidade);
+                limpar_buffer();
+                objeto -> quantidade_estoque = quantidade;
+                printf("[Sucesso] Quantidade Alterada!\n");
+                break;
+            default:
+                printf("Opção Inválida, nada alterado.\n");
+                break;
+            }
+}
